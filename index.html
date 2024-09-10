@@ -41,76 +41,62 @@
     <div class="container  is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">VoiceCraft: Zero-Shot Speech Editing and Text-to-Speech in the Wild</h1>
+          <h1 class="title is-1 publication-title">EzAudio: Enhancing Text-to-Audio Generation with Efficient Diffusion Transformer</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://jasonppy.github.io/">Puyuan Peng</a><sup>1</sup>,</span>
+              <a href="https://haidog-yaqub.github.io/">Jiarui Hai</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://berniebear.github.io/">Po-Yao Huang</a><sup>2</sup>,</span>
+              <a>Yong Xu</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://swdanielli.github.io/">Shang-Wen Li</a><sup>2</sup>,</span>
+              <a>Hao Zhang</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?hl=en&user=tJ_PrzgAAAAJ">Abdelrahman Mohamed</a><sup>3</sup>,
+              <a>Chenxi Li</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.cs.utexas.edu/~harwath/">David Harwath</a><sup>1</sup>,
+              <a>Helin Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a>Mounya Elhilali</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a>Dong Yu</a><sup>2</sup>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>The University of Texas at Austin </span>
-            <span class="author-block"><sup>2</sup>FAIR, Meta </span>
-            <span class="author-block"><sup>3</sup>Rembrand</span>
+            <span class="author-block"><sup>1</sup>Johns Hopkins Unversity, Baltimore, MD, USA</span>
+            <span class="author-block"><sup>2</sup>Tencent AI Lab, Bellevue, WA, USA</span>
           </div>
 
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://jasonppy.github.io/assets/pdfs/VoiceCraft.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-                <a href="https://github.com/jasonppy/VoiceCraft" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code&Model</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+<div align="center" style="margin: 20px 0;">
+    <a href="https://jasonppy.github.io/assets/pdfs/VoiceCraft.pdf" style="text-decoration: none; margin: 0 10px;">
+        <img src="https://img.shields.io/badge/arxiv-paper-F8CECC?style=for-the-badge&logo=arxiv&logoColor=white" alt="Paper">
+    </a>
+    <a href="https://github.com/jasonppy/VoiceCraft" style="text-decoration: none; margin: 0 10px;">
+        <img src="https://img.shields.io/badge/Github-Code-E1D5E7?style=for-the-badge&logo=github&logoColor=white" alt="Code">
+    </a>
+    <a href="https://huggingface.co/jasonppy/VoiceCraft" style="text-decoration: none; margin: 0 10px;">
+        <img src="https://img.shields.io/badge/Space-Model-FFF2CC?style=for-the-badge&logo=huggingface&logoColor=white" alt="HuggingFace">
+    </a>
+    <a href="https://huggingface.co/datasets/jasonppy/VoiceCraft" style="text-decoration: none; margin: 0 10px;">
+        <img src="https://img.shields.io/badge/Drive-Dataset-D5E8D4?style=for-the-badge&logo=google-drive&logoColor=white" alt="Dataset">
+    </a>
+</div>
 
 
 <section id="abs" class="section" style="padding-top: 0px;">
-  <div class="container  is-max-desktop">
-    <!-- Abstract. -->
+  <div class="container is-max-desktop">
+    <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">TL;DR</h2>
         <div class="content has-text-justified">
           <p>
-                <b>VoiceCraft</b> is a token infilling neural codec language model, that achieves <b>state-of-the-art</b> performance on both <b>speech editing</b> and <b>zero-shot text-to-speech (TTS)</b> on in-the-wild data including <b>audiobooks, internet videos, and podcasts.</b>
-          </p>
-          <p>
-              To clone an unseen voice or edit a recording, VoiceCraft needs only a few seconds of the voice.
+<b style="color: #6D4C8A;">EzAudio</b> is an advanced text-to-audio (T2A) generation model that creates high-quality audio from text prompts. It sets a new standard for open-source T2A models by delivering <b style="color: #6D4C8A;">fast</b>, <b style="color: #6D4C8A;">efficient</b>, and <b style="color: #6D4C8A;">realistic</b> sound effects generation.
           </p>
         </div>
-
       </div>
     </div>
-
   </div>
 </section>
 
@@ -394,7 +380,7 @@
             <source src="static/audio_sample/speech_editing/4153_61735_000020_000001_fs.wav" type="audio/wav">
           </audio></td>
       </tr>
-
+    
             <tr>
               <td width="28%" style="text-align: left;">some times i really feel that the world around us continues to be more
                 hectic and more complicated and so many of us are truly craving to find simplicity.</td>
@@ -410,7 +396,7 @@
                   <source src="static/audio_sample/speech_editing/YOU1000000153_S0000000_fs.wav" type="audio/wav">
                 </audio></td>
             </tr>
-
+    
       <tr>
         <td width="28%" style="text-align: left;">For making the title though because I need to get my numbers way up before I
           get there, but I'm gonna get there title of Iceland is definitely going to sign me and um, yeah.</td>
@@ -446,6 +432,7 @@
       </tr>
 
  
+
       <tr>
         <td width="28%" style="text-align: left;">No words just lightning breaking darkness and crashing into the Earth with
           brilliant presence.</td>
@@ -464,7 +451,7 @@
               type="audio/wav">
           </audio></td>
       </tr>
-
+    
       <tr>
         <td width="28%" style="text-align: left;">that schedule is one per week and it will probably be like a Wednesday night
           thing because I plan on doing one to two videos per week.</td>
@@ -644,7 +631,7 @@
                     type="audio/wav">
                 </audio></td>
             </tr>
-
+    
             <tr>
               <td width="28%" style="text-align: left;">this was george steers the son of a british naval captain and ship modeler who had become an american naval officer and
               was the first man to take charge of the washington navy yard</td>
@@ -663,7 +650,7 @@
                     type="audio/wav">
                 </audio></td>
             </tr>
-
+    
           </tbody>
         </table>
       </div>
@@ -729,7 +716,7 @@
                     <source src="static/audio_sample/tts/YOU1000000108_S0000041_orig.wav" type="audio/wav">
                   </audio></td>
               </tr>
-            
+
             <tr>
               <td width="28%" style="text-align: left;">and the only way to do great work is to love what you do. if you haven't found it yet, keep looking.</td>
               <td width="12%" style="text-align: center;"><audio controls="">
@@ -928,7 +915,7 @@
                   <source src="static/audio_sample/tts/YOU1000000173_S0000177_orig.wav" type="audio/wav">
                 </audio></td>
             </tr>
-
+    
             <tr>
               <td width="28%" style="text-align: left;">We clambered up to the front seat and jolted off past the little pond and
                 along the road that climbed to the big cornfield.</td>
