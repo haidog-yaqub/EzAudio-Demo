@@ -83,14 +83,14 @@
     </a>
 </div>
 
-<section id="abs" class="section" style="padding-top: 0px;">
+<section id="abs" class="section" style="padding-top: 0; padding-bottom: 0;">
   <div class="container is-max-desktop">
     <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-<b>EzAudio</b> is an advanced text-to-audio (T2A) generation model that creates high-quality audio from text prompts. It sets a new standard for open-source T2A models by delivering <b>fast</b>, <b>efficient</b>, and <b>realistic</b> sound effects generation.
+            <b>EzAudio</b> is an advanced text-to-audio (T2A) generation model that creates high-quality audio from text prompts. It sets a new standard for open-source T2A models by delivering <b>fast</b>, <b>efficient</b>, and <b>realistic</b> sound effects generation.
           </p>
         </div>
       </div>
@@ -98,19 +98,19 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser">
+<section class="hero teaser">
   <div class="container is-max-desktop is-centered has-text-centered">
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Speech Editing with VoiceCraft</h2>
-          <img src="./static/images/teaser.png" class="interpolation-image"
+          <h2 class="title is-4">The Framework of EzAudio</h2>
+          <img src="./static/images/ezaudio.png" class="interpolation-image"
             alt="Interpolate start reference image." />
         </div>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- <section id="toc" class="section" style="padding-top: 0px;">
   <div class="container  is-fluid">
@@ -174,7 +174,13 @@
 </section> -->
 
 
-<section id="wild" class="hero">
+<style>
+  .highlight {
+    background-color: #DAE8FC;
+  }
+</style>
+
+<section id="wild" class="hero teaser is-light">
   <div class="hero-body">
     <div class="container is-fluid">
       <div class="columns is-centered has-text-centered">
@@ -182,6 +188,7 @@
           <h2 class="title is-4">Guess Which One is Generated!</h2>
           <div class="content">
               <button id="toggleButton" class="button is-info" onclick="toggleHighlight()">Show/Hide Answer</button>
+              <p id="note" style="visibility: hidden; margin-top: 10px; color: #6C8EBF;"><b>Synthetic audio is highlighted by blue.</b></p>
           </div>
         </div>
       </div>
@@ -190,43 +197,34 @@
           <thead>
             <tr>
               <th align="center"><strong>Text Prompt</strong></th>
-              <th align="center"><strong><span class="icon"><i class="fas fa-magic"></i></span>Audio</strong></th>
+              <th align="center"><strong><span class="icon"><i class="fas fa-magic"></i></span>Audio1</strong></th>
+              <th align="center"><strong><span class="icon"><i class="fas fa-magic"></i></span>Audio2</strong></th>
             </tr>
           </thead>
           <tbody>
-            <!-- Real row -->
             <tr>
-              <td width="30%" style="text-align: left;" class="real">what do I really wanna do, I wanna talk to the audience, which is always the best part of my day</td>
-              <td width="20%" style="text-align: center;">
+              <td width="30%" style="text-align: left;">Water lightly splashing as a bird chirps and wind blows into a microphone.</td>
+              <td width="20%" style="text-align: center;" id="audio1">
                 <audio controls="">
-                  <source src="static/audio_sample/teaser/concat_oprah.wav" type="audio/wav">
+                  <source src="static/audio_sample/ezaudio_xl_104348.wav" type="audio/wav">
+                </audio>
+              </td>
+              <td width="20%" style="text-align: center;" id="audio2">
+                <audio controls="">
+                  <source src="static/audio_sample/gt_104348.wav" type="audio/wav">
                 </audio>
               </td>
             </tr>
-            <!-- Synthetic row -->
             <tr>
-              <td width="30%" style="text-align: left;" class="synthetic">This is an AI-generated speech from the model.</td>
-              <td width="20%" style="text-align: center;">
+              <td width="30%" style="text-align: left;">A truck engine running followed by a truck horn honking.</td>
+              <td width="20%" style="text-align: center;" id="audio3">
                 <audio controls="">
-                  <source src="static/audio_sample/teaser/synthetic_speech.wav" type="audio/wav">
+                  <source src="static/audio_sample/gt_107196.wav" type="audio/wav">
                 </audio>
               </td>
-            </tr>
-            <!-- Real row -->
-            <tr>
-              <td width="30%" style="text-align: left;" class="real">The best part of this experiment is the synthesis challenge!</td>
-              <td width="20%" style="text-align: center;">
+              <td width="20%" style="text-align: center;" id="audio4">
                 <audio controls="">
-                  <source src="static/audio_sample/teaser/real_speech.wav" type="audio/wav">
-                </audio>
-              </td>
-            </tr>
-            <!-- Synthetic row -->
-            <tr>
-              <td width="30%" style="text-align: left;" class="synthetic">This audio is synthetically generated.</td>
-              <td width="20%" style="text-align: center;">
-                <audio controls="">
-                  <source src="static/audio_sample/teaser/synthetic_audio2.wav" type="audio/wav">
+                  <source src="static/audio_sample/ezaudio_xl_107196.wav" type="audio/wav">
                 </audio>
               </td>
             </tr>
@@ -239,19 +237,25 @@
 
 <script>
   function toggleHighlight() {
-    // Get all the synthetic rows
-    var syntheticRows = document.querySelectorAll(".synthetic");
+    // Select synthetic audio cells by ID
+    var audio1 = document.getElementById("audio1");
+    var audio4 = document.getElementById("audio4");
     
-    // Toggle (synthetic) label for each synthetic row
-    syntheticRows.forEach(function(row) {
-      if (row.innerHTML.endsWith("(synthetic)")) {
-        row.innerHTML = row.innerHTML.replace(" (synthetic)", "");
-      } else {
-        row.innerHTML = row.innerHTML + " (synthetic)";
-      }
-    });
+    // Toggle the 'highlight' class on the synthetic audio cells
+    audio1.classList.toggle("highlight");
+    audio4.classList.toggle("highlight");
+    
+    // Show or hide the note, preserving space
+    var note = document.getElementById("note");
+    if (note.style.visibility === "hidden") {
+      note.style.visibility = "visible";
+    } else {
+      note.style.visibility = "hidden";
+    }
   }
 </script>
+
+
 
 
 <!-- <script>
@@ -265,7 +269,7 @@
 </script> -->
 
 
-<section id="vc_fs" class="hero">
+<section id="vc_fs" class="hero teaser">
   <div class="hero-body">
     <div class="container is-fluid">
       <div class="columns is-centered has-text-centered">
@@ -289,25 +293,171 @@
           </thead>
           <tbody>
       <tr>
-        <td width="28%" style="text-align: left;">Fast cars, that had the nice clothes, that had the money, they was
-          criminals.</td>
+        <td width="28%" style="text-align: left;">A vehicle engine revving then accelerating at a high rate as a metal surface is whipped followed by tires skidding.</td>
         <td width="18%" style="text-align: center;"><audio controls="">
-            <source src="static/audio_sample/speech_editing/show_1cOsDxbQjLADedwZaG7Bm1-6mLz726LYCcgN69RWWlrOJ.wav"
+            <source src="static/audio_sample/ezaudio_xl_102745.wav"
               type="audio/wav">
           </audio></td>
           <td width="18%" style="text-align: center;"><audio controls="">
-            <source src="static/audio_sample/speech_editing/show_1cOsDxbQjLADedwZaG7Bm1-6mLz726LYCcgN69RWWlrOJ_fs.wav"
+            <source src="static/audio_sample/tango_102745.wav"
               type="audio/wav">
           </audio></td>
         <td width="18%" style="text-align: center;"><audio controls="">
-            <source src="static/audio_sample/speech_editing/show_1cOsDxbQjLADedwZaG7Bm1-6mLz726LYCcgN69RWWlrOJ_ve.wav"
+          <source src="static/audio_sample/audioldm2_102745.wav"
               type="audio/wav">
           </audio></td>
         <td width="18%" style="text-align: center;"><audio controls="">
-            <source src="static/audio_sample/speech_editing/show_1cOsDxbQjLADedwZaG7Bm1-6mLz726LYCcgN69RWWlrOJ_fs.wav"
+          <source src="static/audio_sample/maa2_102745.wav"
               type="audio/wav">
           </audio></td>
       </tr>
+
+      <tr>
+        <td width="28%" style="text-align: left;">Water lightly splashing as a bird chirps and wind blows into a microphone.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_104348.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_104348.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_104348.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_104348.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">Wood stirring in a pot followed by a wooden object falling as a woman is talking as food is sizzling and light guitar music is playing.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_105374.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_105374.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_105374.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_105374.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">A man talking as water splashes and gurgles and a motor engine hums in the background.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_106042.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_106042.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_106042.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_106042.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">A piano playing as plastic bonks.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_105774.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_105774.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_105774.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_105774.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">A truck engine running followed by a truck horn honking.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_107196.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_107196.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_107196.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_107196.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">A horse clip-clops in a windy rain as thunder cracks in the distance.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_104144.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_104144.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_104144.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_104144.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
+
+      <tr>
+        <td width="28%" style="text-align: left;">A man yells, slams a door and then speaks.</td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/ezaudio_xl_107003.wav"
+              type="audio/wav">
+          </audio></td>
+          <td width="18%" style="text-align: center;"><audio controls="">
+            <source src="static/audio_sample/tango_107003.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/audioldm2_107003.wav"
+              type="audio/wav">
+          </audio></td>
+        <td width="18%" style="text-align: center;"><audio controls="">
+          <source src="static/audio_sample/maa2_107003.wav"
+              type="audio/wav">
+          </audio></td>
+      </tr>
+
             </tbody>
         </table>
       </div>
@@ -321,7 +471,8 @@
 </section>
 
 
-<footer class="footer">
+<section id="footer" class="hero teaser">
+  <div class="hero-body">
   <div class="container is-fluid">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -340,7 +491,8 @@
       </div>
     </div>
   </div>
-</footer>
+</div>
+</section>
 
 </body>
 </html>
